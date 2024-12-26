@@ -5,17 +5,18 @@ package deso1_2324;
  * @author Bùi Thanh Quân - int710 - CT070242
  */
 public class GiangVien {
+
     private String id;
-    private String hoTen;
     private String maGV;
+    private String hoTen;
     private String diaChi;
     private String gioiTinh;
     private String khoa;
 
-    public GiangVien(String id, String hoTen, String maGV, String diaChi, String gioiTinh, String khoa) {
+    public GiangVien(String id, String maGV, String hoTen, String diaChi, String gioiTinh, String khoa) {
         this.id = id;
-        this.hoTen = hoTen;
         this.maGV = maGV;
+        this.hoTen = hoTen;
         this.diaChi = diaChi;
         this.gioiTinh = gioiTinh;
         this.khoa = khoa;
@@ -71,6 +72,11 @@ public class GiangVien {
 
     @Override
     public String toString() {
-        return "ID: " + id + ", Họ tên: " + hoTen + ", Mã GV: " + maGV + ", Địa chỉ: " + diaChi + ", Giới tính: " + gioiTinh + ", Khoa: " + khoa;
+        return "ID: " + id + ", Mã GV: " + maGV  + ", Họ tên: " + hoTen + ", Địa chỉ: " + diaChi + ", Giới tính: " + gioiTinh + ", Khoa: " + khoa;
     }
+    
+    public String toStringWriteFile() {
+        return id + "," + maGV  + "," + hoTen + "," + diaChi + "," + gioiTinh + "," + khoa;
+    }
+    
 }

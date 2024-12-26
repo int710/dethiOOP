@@ -1,16 +1,35 @@
 package deso1_2324;
 
+import deso1_2324.FileIO;
+import deso1_2324.GiangVien;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
  */
 public class GiangVienFrame extends javax.swing.JFrame {
 
+    private static final String FILE_NAME = "giangvien.dat";
+
     /**
      * Creates new form GiangVienFrame
      */
     public GiangVienFrame() {
         initComponents();
+        setLocationRelativeTo(null);
+    }
+
+    private void clearFields() {
+        txId.setText("");
+        txMagv.setText("");
+        txHoten.setText("");
+        txDiachi.setText("");
+        cbKhoa.setSelectedIndex(0);
     }
 
     /**
@@ -22,21 +41,23 @@ public class GiangVienFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txMaGV = new javax.swing.JTextField();
+        txMagv = new javax.swing.JTextField();
         txId = new javax.swing.JTextField();
         txHoten = new javax.swing.JTextField();
-        rNam = new javax.swing.JRadioButton();
-        rNu = new javax.swing.JRadioButton();
+        rdGtNam = new javax.swing.JRadioButton();
+        rdGtNu = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txDiachi = new javax.swing.JTextArea();
         cbKhoa = new javax.swing.JComboBox<>();
-        btnSave = new javax.swing.JButton();
+        btnLuu = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,9 +79,16 @@ public class GiangVienFrame extends javax.swing.JFrame {
             }
         });
 
-        rNam.setText("Nam");
+        buttonGroup1.add(rdGtNam);
+        rdGtNam.setText("Nam");
 
-        rNu.setText("Nữ");
+        buttonGroup1.add(rdGtNu);
+        rdGtNu.setText("Nữ");
+        rdGtNu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdGtNuActionPerformed(evt);
+            }
+        });
 
         txDiachi.setColumns(20);
         txDiachi.setRows(5);
@@ -68,7 +96,19 @@ public class GiangVienFrame extends javax.swing.JFrame {
 
         cbKhoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CNTT", "ATTT", "ĐTVT", "CB", "MM" }));
 
-        btnSave.setText("Lưu trữ");
+        btnLuu.setText("Lưu trữ");
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
+
+        btnSearch.setText("Tìm kiếm");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,7 +124,7 @@ public class GiangVienFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txHoten)
                     .addComponent(jScrollPane1)
-                    .addComponent(txMaGV))
+                    .addComponent(txMagv))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -93,9 +133,9 @@ public class GiangVienFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rNam)))
+                                .addComponent(rdGtNam)))
                         .addGap(5, 5, 5)
-                        .addComponent(rNu, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rdGtNu, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txId, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -105,10 +145,12 @@ public class GiangVienFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(cbKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSave)
-                .addGap(217, 217, 217))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(btnLuu)
+                .addGap(51, 51, 51)
+                .addComponent(btnSearch)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,15 +161,15 @@ public class GiangVienFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel5)
-                            .addComponent(txMaGV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txMagv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel6)
                             .addComponent(txHoten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rNam)
-                            .addComponent(rNu))
+                            .addComponent(rdGtNam)
+                            .addComponent(rdGtNu))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -141,7 +183,9 @@ public class GiangVienFrame extends javax.swing.JFrame {
                         .addGap(96, 96, 96)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(btnSave)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLuu)
+                    .addComponent(btnSearch))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -151,6 +195,50 @@ public class GiangVienFrame extends javax.swing.JFrame {
     private void txIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txIdActionPerformed
+
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        List<GiangVien> dsGiangVien = FileIO.getAll(FILE_NAME);
+        
+        String maGv = txMagv.getText().trim();
+        String Id = txId.getText().trim();
+        String hoTen = txHoten.getText().trim();
+        String diaChi = txDiachi.getText().trim();
+        String khoa = cbKhoa.getSelectedItem().toString();
+        String gioiTinh = rdGtNam.isSelected() ? rdGtNam.getText() : rdGtNu.getText();
+
+        if (maGv.isEmpty() || Id.isEmpty() || hoTen.isEmpty() || diaChi.isEmpty() || khoa.isEmpty() || gioiTinh.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa điền đầy đủ thông tin");
+            return;
+        }
+
+        String errorMessage = FileIO.checkDuplicate(dsGiangVien, maGv, Id);
+        if (errorMessage != null) {
+            JOptionPane.showMessageDialog(this, errorMessage);
+            return;
+        }
+        
+        GiangVien gv = new GiangVien(Id, maGv, hoTen, diaChi, gioiTinh, khoa);
+        if (FileIO.saveToFile(FILE_NAME, gv)) {
+            JOptionPane.showMessageDialog(this, "Thêm dữ liệu thành công vào file " + FILE_NAME);
+            clearFields();
+        } else {
+            JOptionPane.showMessageDialog(this, "Lưu thất bại. Vui lòng kiểm tra lại.");
+        }
+    }//GEN-LAST:event_btnLuuActionPerformed
+
+    private void rdGtNuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdGtNuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdGtNuActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String input = JOptionPane.showInputDialog(this, "Nhập tên giảng viên muốn tìm: ");
+        List<GiangVien> list = FileIO.getAll(FILE_NAME);
+        
+        GiangVien gv = FileIO.searchGV(list, input);
+        if(gv != null) {
+            System.out.println(gv.toString());
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,7 +276,9 @@ public class GiangVienFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnLuu;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbKhoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -197,11 +287,11 @@ public class GiangVienFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton rNam;
-    private javax.swing.JRadioButton rNu;
+    private javax.swing.JRadioButton rdGtNam;
+    private javax.swing.JRadioButton rdGtNu;
     private javax.swing.JTextArea txDiachi;
     private javax.swing.JTextField txHoten;
     private javax.swing.JTextField txId;
-    private javax.swing.JTextField txMaGV;
+    private javax.swing.JTextField txMagv;
     // End of variables declaration//GEN-END:variables
 }
