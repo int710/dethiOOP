@@ -1,5 +1,5 @@
 
-package deso1_2324;
+package de1;
 
 import java.util.Scanner;
 
