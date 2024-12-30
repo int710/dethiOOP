@@ -1,7 +1,7 @@
-package deso1_2324;
+package de1;
 
-import deso1_2324.FileIO;
-import deso1_2324.GiangVien;
+import de1.FileIO;
+import de1.GiangVien;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;

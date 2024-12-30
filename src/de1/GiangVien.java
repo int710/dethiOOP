@@ -1,4 +1,4 @@
-package deso1_2324;
+package de1;
 
 /**
  *
