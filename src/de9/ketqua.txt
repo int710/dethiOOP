@@ -1,0 +1,2 @@
+Số A: 22, Số B: 21, Ước chung lớn nhất: 1
+Số A: 12, Số B: 78, Ước chung lớn nhất: 6
