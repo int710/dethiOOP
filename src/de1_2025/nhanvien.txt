@@ -1,0 +1,2 @@
+Nhân viên bếp: Họ tên: Bùi Thanh Quân | Thâm niên: 2 | Quê quán: Hòa Bình | Số giờ làm việc: 8.0 | Bếp trưởng: true | Thưởng chức vụ: 2000000.0 | Lương: 2800000.0
+Nhân viên bếp: Họ tên: TNgan | Thâm niên: 2 | Quê quán: Hòa Bình | Số giờ làm việc: 1.0 | Biết ngoại ngữ: true | Lương: 100000.0
