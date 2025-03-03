@@ -1,0 +1,2 @@
+ThiSinhKhoiA{diemToan=10.0, diemHoa=10.0, diemLy=8.0}
+ThiSinhKhoiD{diemToan=8.0, diemVan=9.0, diemAnh=8.0}

@@ -1,0 +1,4 @@
+DoUong,Trà đá,MH001,30,10000,false
+MonAn,Bún đậu,MH002,12,45000,false
+DoUong,Coffe,MH003,5,12000,true
+MonAn,Phở,MH004,20,35000,true
